@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
 import axios from 'axios';
-import "./select.css"
+import "./select.css";
 
 
 interface clienteValues {
   persons: Array<object>,
   id: string,
   name: string,
-}
+};
 
 export default class SelectCLient extends Component< any, any>{
   constructor(props: clienteValues) {
@@ -21,38 +21,20 @@ export default class SelectCLient extends Component< any, any>{
 
   }
   async componentDidMount(){
-    //    this.getOptions()
     await axios.get('https://jsonplaceholder.typicode.com/users').then(res => {
       let options = res.data.map((d: { id: number; name: string }) => ({
         value : d.id,
         label : d.name,
         
       }))        
-      this.setState({persons: options})
+      this.setState({persons: options});
     })
   }
   
   handleChange(e:any){
-    this.setState({id:e.value, name:e.label})
+    this.setState({id:e.value, name:e.label});
   }
-
-  // customStyles = {
-  //   control: (provided: any) => ({
-  //     ...provided,
-      // width: "490px",
-      // marginLeft: "8%",
-      // marginTop: "1%",
-      // marginBottom:"1%",
-      // border: "none",
-      // fontSize: "14x",
-      // cursor: "ponter",
-      // '&:hover': {
-      //   width: '500px',
-      //   border: "1px solid rgb(29, 5, 184)"
-  //     },
-  //   })
-  // }
-      
+     
       
 render() {
    return (

@@ -69,6 +69,7 @@
     width: 25%;
     transition: width .5s;
     transition: height .5s;
+    cursor: pointer;
 }
 
 .cadastro label {
@@ -79,6 +80,20 @@
 input::selection{
     border: none;
 }
+
+.toast {
+    background-color: rgb(255, 66, 66);
+    width: 80%;
+    padding: 15px;
+    margin-left: 50px;
+    margin-bottom: 10px;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+}
+
+
+
 
 @media(max-width: 800px) {
 
@@ -107,5 +122,21 @@ input::selection{
     .btnEnviar{
         width: 40%;
     }
+
+    .toast {
+        background-color: rgb(255, 66, 66);
+        width: 80%;
+        padding: 10px;
+        margin-left: 1rem;
+        margin-bottom: 5px;
+        color: white;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .toast-body {
+        font-size: .7rem;
+    }
+    
 
   }

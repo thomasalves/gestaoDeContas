@@ -6,6 +6,7 @@
   .sideBar{
     width: 25%;
     border: 1px solid rgb(200, 200, 200);
+    height: auto;
     box-shadow: 1px 2px 8px 1px gray;
   
   }
@@ -16,6 +17,7 @@
     color: white;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
   
   
   }
@@ -57,7 +59,7 @@
 
   }
   .button button:hover{
-    width: 115px;
+    width: 105px;
     height: 40px;
   }
 

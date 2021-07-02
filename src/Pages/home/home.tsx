@@ -68,12 +68,13 @@ export function Home () {
     }
 
     async function DeleteCliente(_id: string) {
-
-            await axios.delete(`https://provadev.xlab.digital/api/v1/divida/${_id}?uuid=ce7d2f4d-1d53-43bf-b899-72cb2eb7d336`)       
+            console.log(_id)
+            await axios.delete(`https://provadev.xlab.digital/api/v1/divida/${_id}?uuid=ce7d2f4d-1d53-43bf-b899-72cb2eb7d336`)     
             window.location.reload();
+
+            
         
     }
-
     return(
         <div className="home">
             <Menu></Menu>
@@ -93,7 +94,7 @@ export function Home () {
                             <h4>{i.motivo}</h4>
                             <h3>{i.valor}</h3>
                             <div className="button">
-                                <button  className="remover" onClick={() => DeleteCliente(i._id) }>Excluir</button>
+                                <button  key={i.idUsuario} className="remover" onClick={() => DeleteCliente(i.id) }>Excluir</button>
                                 <Link to={"/editar/" + i.id}>
                                      <button  className="atualizar">Editar</button>
                                 </Link>

@@ -1,6 +1,6 @@
 // import { Link } from 'react-router-dom'
-import { Link } from 'react-router-dom'
-import './Menu.css'
+import { Link } from 'react-router-dom';
+import './Menu.css';
 
 
 export function Menu () {

@@ -1,9 +1,10 @@
 import './Cadastro.css'
 import  React, { useState } from "react";
 import SelectCLient from '../../Components/Select/Select';
-import { Link} from 'react-router-dom';
+import { Link, Redirect} from 'react-router-dom';
 import axios from 'axios';
 import { Toast } from 'react-bootstrap';
+// import { redirectTo } from "@reach/router"
 
 interface clienteValues {
     persons: Array<object>,
@@ -15,11 +16,10 @@ interface clienteValues {
 export function Cadastro () {
 
     const [showA, setShowA] = useState(false);
-    const toggleShowA = () => setShowA(!showA);
+
     function createDivida(){
-        
-    
-        console.log(motivo, valor, cliente)
+        console.log("oi")
+        console.log(motivo,valor, cliente)
         if(motivo !== '' && valor !== '' && cliente !== '') {
             axios.post(`https://provadev.xlab.digital/api/v1/divida?uuid=ce7d2f4d-1d53-43bf-b899-72cb2eb7d336`,
             {
@@ -28,12 +28,13 @@ export function Cadastro () {
                 "valor": valor
             })
             .then(res => {
-              console.log(res);
+             <Redirect to="/"/>
               console.log(res.data);
             })
 
         } else {
-            setShowA(true)
+            setShowA(true);
+ 
         }
 
     }
@@ -43,13 +44,10 @@ export function Cadastro () {
     const [cliente, setCliente] = useState('');
     return(
         <div className="pageCadastro">
-            <Toast show={showA} onClose={toggleShowA}>
-            <Toast.Header>
-                <strong className="mr-auto">Cadastro não realizado</strong>
-            </Toast.Header>
-            <Toast.Body>Preencha todos os campos corretamente</Toast.Body>
-            </Toast>
             <div className="cadastro">
+                <Toast className="toast" show={showA} onClick={ () => setShowA(false) } >
+                    <Toast.Body >Preencha todos os campos corretamente</Toast.Body>
+                 </Toast>    
                 <h3>Nova Divida:</h3>
                 <label htmlFor="cliente">Cliente</label>
                 
@@ -61,9 +59,8 @@ export function Cadastro () {
                 <input  type="motivo" name="motivo" id="motivo" value={motivo} onChange={(e) => setMotivo(e.target.value)} placeholder="Ex: divida cartão de crédito"  />
                 <label htmlFor="valor">Valor</label>
                 <input  type="valor" name="valor" id="valor" value={valor} onChange={(e) => setValor(e.target.value)}  placeholder="Ex: R$500,00"  />
-                <Link onClick={() => createDivida()} className="btnEnviar" to="/" >Enviar</Link>
+                <Link to='/' onClick={() => createDivida()} className="btnEnviar">Enviar</Link>
             </div>
         </div>
     )
 }
-
